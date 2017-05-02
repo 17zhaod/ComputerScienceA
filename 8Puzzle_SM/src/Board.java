@@ -39,7 +39,7 @@ public class Board
     {
       for(int j=0; j<board[i].length;j++)
       {
-        board[i][j].setValue(allValues.get(3*i+j));
+        board[i][j].setValue(allValues.get(dim*i+j));
       }
     }
   }
@@ -52,9 +52,10 @@ public class Board
     {
         for(int j=0;j<board[i].length;j++)
         {
-            if(board[i][j].getValue()!=0)
+            if(board[j][i].getValue()!=0)
             {
-              existingValues.add(board[i][j].getValue());
+              System.out.print(board[j][i].getValue());
+              existingValues.add(board[j][i].getValue());
             }
         }
     }
@@ -70,15 +71,18 @@ public class Board
             }
         }
     }
+    
     int blankY = findTile(0).getYPosition();
     
+    System.out.println("");
+    System.out.println(inversions);
     if(dim%2==1)
     {
       return (inversions%2==1);
     }
     else
     {
-      if(blankY%2==1)
+      if(blankY%2==0)
       {
         return (inversions%2==1);
       }
@@ -94,7 +98,7 @@ public class Board
   {
     Tile t = findTile(number);
     Tile z = findTile(0); 
-    if(hasOpen(t).equals("N"))
+    if(hasOpen(t).equals("N") || number > dim*dim-1)
     {
       System.out.println("Invalid Move");
     }
