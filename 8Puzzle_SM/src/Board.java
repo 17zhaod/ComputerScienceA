@@ -54,7 +54,7 @@ public class Board
         {
             if(board[j][i].getValue()!=0)
             {
-              System.out.print(board[j][i].getValue());
+              //System.out.print(board[j][i].getValue());
               existingValues.add(board[j][i].getValue());
             }
         }
@@ -74,8 +74,8 @@ public class Board
     
     int blankY = findTile(0).getYPosition();
     
-    System.out.println("");
-    System.out.println(inversions);
+    //System.out.println("");
+    //System.out.println(inversions);
     if(dim%2==1)
     {
       return (inversions%2==1);
