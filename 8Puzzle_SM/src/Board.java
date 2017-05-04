@@ -10,6 +10,7 @@ public class Board
   {
     dim = size;
     board = new Tile[dim][dim];
+    //sets the initial tile value to the position
     for(int i=0;i<board.length;i++)
     {
         for(int j=0;j<board[i].length;j++)
@@ -27,6 +28,7 @@ public class Board
     {
       allValues.add(a);
     } 
+    //randomize the elements of allValues
     for (int k = allValues.size() - 1; k > 0; k--) {
       int howMany = k + 1;
       int start = 0;
@@ -35,6 +37,7 @@ public class Board
       allValues.set(k, allValues.get(randPos));
       allValues.set(randPos, temp);
     }
+    //set nth tile to nth value in the random allValues ArrayList
     for(int i=0; i<board.length;i++)
     {
       for(int j=0; j<board[i].length;j++)
@@ -44,7 +47,7 @@ public class Board
     }
   }
   
-  //not working for even?
+  //math
   public boolean isWinnable()
   {
     ArrayList<Integer> existingValues = new ArrayList<Integer>();
@@ -93,7 +96,7 @@ public class Board
     }
   }
 
-
+ //switched tile with 0 tile
   public void moveTile(int number)
   {
     Tile t = findTile(number);
@@ -109,6 +112,7 @@ public class Board
     }
   }
  
+  //returns which direction has the open move
   public String hasOpen(Tile t)
   {
     int x1 = t.getXPosition()-1;
@@ -146,6 +150,7 @@ public class Board
       return "N";
   }
   
+  //find tile based on value
   public Tile findTile(int number)
   { 
     for(int i=0;i<board.length;i++)
@@ -161,6 +166,7 @@ public class Board
       return null;
   }
 
+  //finds tile based on position
   public Tile findTile(int x, int y)
   {
     for(int i=0;i<board.length;i++)

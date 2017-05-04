@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//time counter
 
 public class Game
 {
@@ -10,7 +9,8 @@ public class Game
   {
     int choice = 0;
     ArrayList<Integer> scores = new ArrayList<Integer>();
-    System.out.println("Welcome!");
+    System.out.println("Welcome to the N-puzzle!");
+    //plays the game
     while(true)
     {
       int size = 0;
@@ -27,6 +27,7 @@ public class Game
         }
       }
       Board game = new Board(size);
+      //continues making moves until you win
       while(true)
       {
         game.randomize();
@@ -39,6 +40,16 @@ public class Game
       int move = 0;
       while(true)
       {
+        if(haveWon(game))
+        {
+          System.out.println("You've Finished!");
+          System.out.println("You used " + moves + " moves.");
+          if(moves == 0)
+          {
+            System.out.println("You were really lucky on that one (;");
+          }
+          break;
+        }
         System.out.println("Which tile would you like to move?");
         if(keyboard.hasNextInt())
         {
@@ -47,12 +58,6 @@ public class Game
         game.moveTile(move);
         moves++;
         game.print();
-        if(haveWon(game))
-        {
-          System.out.println("You've Finished!");
-          System.out.println("You used " + moves + " moves.");
-          break;
-        }
       }
       scores.add(moves);
       sort(scores);
@@ -71,6 +76,7 @@ public class Game
     
   }
   
+  //checks for win
   private static boolean haveWon(Board b)
   {
     for(int i=0;i<b.board.length;i++)
@@ -88,7 +94,7 @@ public class Game
   
   private static void printScores(ArrayList<Integer> l)
   {
-    System.out.print("Scores: | ");
+    System.out.print("High Scores: | ");
     for(int i=0;i<l.size();i++)
     {
       System.out.print(l.get(i) + " | ");
